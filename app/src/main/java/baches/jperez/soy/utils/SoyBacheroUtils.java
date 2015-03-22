@@ -26,7 +26,10 @@ public class SoyBacheroUtils {
             httpConnection = (HttpURLConnection) url.openConnection();
             httpConnection.setRequestMethod("GET");
 
-            httpConnection.setRequestProperty("Authorization", "6d57ac3ec2cdf81d7b50ee23151db681f0161253");
+            String accessCredential = "6d57ac3ec2cdf81d7b50ee23151db681f0161253";
+            String authorization = "token " + Base64.encodeToString(accessCredential.getBytes(), Base64.NO_WRAP);
+
+            httpConnection.setRequestProperty("Authorization",authorization);
             httpConnection.setRequestProperty("Content-Type", "application/json");
             httpConnection.connect();
 

@@ -67,8 +67,6 @@ public class MainActivity extends ActionBarActivity {
 
         });
 
-        new GETBaches().execute();
-
 
     }
 
@@ -206,31 +204,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private class GETBaches extends AsyncTask<Object, Void, Void>{
-
-        private ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute(){
-            super.onPreExecute();
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage(getResources().getString(R.string.abc_action_bar_up_description));
-            progressDialog.show();
-        }
-
-        @Override
-        protected Void doInBackground(Object... arg0) {
-            SoyBacheroUtils.getTimelineForSearchTerm();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result){
-            progressDialog.dismiss();
-        }
-
-
     }
 }

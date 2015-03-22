@@ -3,10 +3,12 @@ package baches.jperez.soy;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -28,6 +30,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import java.util.ArrayList;
+
+import baches.jperez.soy.utils.SoyBacheroUtils;
 
 
 public class Home extends ActionBarActivity {
@@ -52,7 +56,7 @@ public class Home extends ActionBarActivity {
         setContentView(R.layout.activity_home);
 
 
-        // AQUI EMPÏEZA EL CODIGO DE LA CLASE
+        // AQUI EMPï¿½EZA EL CODIGO DE LA CLASE
 
         session = new SessionManager(getApplicationContext());
         NavDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -135,6 +139,7 @@ public class Home extends ActionBarActivity {
 
         //Cuando la aplicacion cargue por defecto mostrar la opcion Home
         MostrarFragment(1);
+        new GETBaches().execute();
     }
 
 
@@ -219,6 +224,31 @@ public class Home extends ActionBarActivity {
         return true;
     }
 
+    private class GETBaches extends AsyncTask<Object, Void, Void> {
+
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(Home.this);
+            progressDialog.setMessage(getResources().getString(R.string.hello_world));
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Object... arg0) {
+            SoyBacheroUtils.getTimelineForSearchTerm();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result){
+            progressDialog.dismiss();
+        }
+
+
+    }
 
 
 }
