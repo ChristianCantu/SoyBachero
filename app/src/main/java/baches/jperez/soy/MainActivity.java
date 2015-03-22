@@ -44,6 +44,9 @@ public class MainActivity extends ActionBarActivity {
         Button boton = (Button) findViewById(R.id.btnIniciar);
 
         final EditText User = (EditText) findViewById(R.id.txtusr);
+
+
+
         final EditText Password = (EditText) findViewById(R.id.txtpwd);
 
 
@@ -55,12 +58,13 @@ public class MainActivity extends ActionBarActivity {
 
 
 
+
                 TareaWSInsertar tarea = new TareaWSInsertar();
                 tarea.execute(
-                        User.getText().toString(),
+
+                User.getText().toString(),
                         Password.getText().toString());
             }
-
 
 
 
@@ -80,15 +84,13 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(getBaseContext(), "error de red", Toast.LENGTH_SHORT).show();
             } else if (result == 400) {
 
-
-                Toast.makeText(getBaseContext(), "Usuario y/o contraseï¿½a incorrectos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show();
             }
             else if  (!verificaConexion(MainActivity.this)) {
                 Toast.makeText(getBaseContext(),
                         "Comprueba tu conexiï¿½n a Internet ", Toast.LENGTH_SHORT)
                         .show();
             }
-
 
 
         }
@@ -150,9 +152,6 @@ public class MainActivity extends ActionBarActivity {
                     Login.putExtras(mBundle);
                     startActivity(Login);
                     finish();
-
-                } {
-
 
                 }
 
