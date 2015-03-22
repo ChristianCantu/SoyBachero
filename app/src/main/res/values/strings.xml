@@ -4,4 +4,25 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_home">Home</string>
+
+    <!-- Lista de titulos de navegacion-->
+    <string-array name="nav_options">
+        <item>Rerpotes</item>
+        <item>Crear Reporte</item>
+        <item>Consultar</item>
+        <item>Sincronizar</item>
+        <item>Configuracion</item>
+
+    </string-array>
+    <!-- Lista de iconos de navegacion-->
+    <array name="navigation_iconos">
+        <item>@drawable/ic_action_home</item>
+        <item>@drawable/ic_action_new_event</item>
+        <item>@drawable/ic_action_attachment</item>
+        <item>@drawable/ic_action_refresh</item>
+        <item>@drawable/ic_action_settings</item>
+    </array>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
