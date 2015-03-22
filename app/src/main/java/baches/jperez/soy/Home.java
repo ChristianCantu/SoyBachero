@@ -3,6 +3,7 @@ package baches.jperez.soy;
 import android.app.Fragment;
 import android.app.FragmentManager;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 
@@ -41,9 +42,10 @@ public class Home extends ActionBarActivity {
     private CharSequence mTitle;
     NavigationAdapter NavAdapter;
     private ImageButton newi;
-
+    SessionManager session;
     private EditText num_tag;
     private Button btnCons;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +54,7 @@ public class Home extends ActionBarActivity {
 
         // AQUI EMPÏEZA EL CODIGO DE LA CLASE
 
-
+        session = new SessionManager(getApplicationContext());
         NavDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         //Lista
         NavList = (ListView) findViewById(R.id.lista);
@@ -78,7 +80,7 @@ public class Home extends ActionBarActivity {
         //Captura de indicio
         NavItms.add(new Item_object(titulos[2], NavIcons.getResourceId(2, -1)));
         //consultar
-       // NavItms.add(new Item_object(titulos[3], NavIcons.getResourceId(3, -1)));
+        // NavItms.add(new Item_object(titulos[3], NavIcons.getResourceId(3, -1)));
         //Sincronizar
         //NavItms.add(new Item_object(titulos[4], NavIcons.getResourceId(4, -1)));
 
@@ -147,7 +149,10 @@ public class Home extends ActionBarActivity {
             case 1:
                 fragment = new HomeFragment();
                 break;
+            case 2:
+                session.logoutUser();
 
+                break;
 
 
             default:
@@ -177,7 +182,6 @@ public class Home extends ActionBarActivity {
 
 
         }
-
 
     }
 
@@ -215,7 +219,6 @@ public class Home extends ActionBarActivity {
         return true;
     }
 
+
+
 }
-
-
-
