@@ -139,6 +139,9 @@ public class Home extends ActionBarActivity {
 
         //Cuando la aplicacion cargue por defecto mostrar la opcion Home
         MostrarFragment(1);
+
+
+
         new GETBaches().execute();
     }
 
@@ -236,9 +239,13 @@ public class Home extends ActionBarActivity {
             progressDialog.show();
         }
 
+
+        //obtener token de login
+        String token = getIntent().getExtras().getString("key");
+
         @Override
         protected Void doInBackground(Object... arg0) {
-            SoyBacheroUtils.getTimelineForSearchTerm();
+            SoyBacheroUtils.getTimelineForSearchTerm(token);
             return null;
         }
 

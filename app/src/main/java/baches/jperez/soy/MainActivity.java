@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity {
                 Toast.makeText(getBaseContext(), "error de red", Toast.LENGTH_SHORT).show();
             } else if (result == 400) {
 
-                Toast.makeText(getBaseContext(), "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Usuario y/o contraseÃ±a incorrectos", Toast.LENGTH_SHORT).show();
             }
             else if  (!verificaConexion(MainActivity.this)) {
                 Toast.makeText(getBaseContext(),

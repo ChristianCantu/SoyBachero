@@ -20,7 +20,7 @@ import android.util.Log;
 
 public class SoyBacheroUtils {
 
-    public static String getTimelineForSearchTerm(){
+    public static String getTimelineForSearchTerm(String idtoken){
 
 
         BufferedReader bufferedReader = null;
@@ -33,8 +33,8 @@ public class SoyBacheroUtils {
             HttpClient httpclient = new DefaultHttpClient();
             HttpGet get = new HttpGet(ConstantsUtils.URL_GETBACHES);
 
-            String accessCredential = "6d57ac3ec2cdf81d7b50ee23151db681f0161253";
-            String authorization = ("token " + accessCredential);
+
+            String authorization = ("token " + idtoken);
             get.setHeader("Authorization",authorization);
            // get.setHeader("content-type", "application/json);
 
