@@ -37,13 +37,13 @@ public class SoyBacheroUtils {
                 response.append(line);
             }
 
-            Log.d(TAG, "GET response code: " + String.valueOf(httpConnection.getResponseCode()));
-            Log.d(TAG, "JSON response: " + response.toString());
+            Log.d("log1", "GET response code: " + String.valueOf(httpConnection.getResponseCode()));
+            Log.d("log2", "JSON response: " + response.toString());
 
             return response.toString();
 
         } catch (Exception e) {
-            Log.e(TAG, "GET error: " + Log.getStackTraceString(e));
+            Log.e("log3", "GET error: " + Log.getStackTraceString(e));
             return null;
 
         }finally {
