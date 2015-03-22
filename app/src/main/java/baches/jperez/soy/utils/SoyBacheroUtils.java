@@ -4,11 +4,16 @@ package baches.jperez.soy.utils;
  * Created by jonatan on 22/03/15.
  */
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import org.json.JSONObject;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
 
 import android.util.Base64;
 import android.util.Log;
@@ -17,43 +22,66 @@ public class SoyBacheroUtils {
 
     public static String getTimelineForSearchTerm(){
 
-        HttpURLConnection httpConnection = null;
+
         BufferedReader bufferedReader = null;
-        StringBuilder response = new StringBuilder();
+        InputStream inputStream = null;
+        String result = "";
 
         try {
-            URL url = new URL(ConstantsUtils.URL_GETBACHES);
-            httpConnection = (HttpURLConnection) url.openConnection();
-            httpConnection.setRequestMethod("GET");
+
+            // create HttpClient
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpGet get = new HttpGet(ConstantsUtils.URL_GETBACHES);
 
             String accessCredential = "6d57ac3ec2cdf81d7b50ee23151db681f0161253";
-            String authorization = "token " + Base64.encodeToString(accessCredential.getBytes(), Base64.NO_WRAP);
+            String authorization = ("token " + accessCredential);
+            get.setHeader("Authorization",authorization);
+           // get.setHeader("content-type", "application/json);
 
-            httpConnection.setRequestProperty("Authorization",authorization);
-            httpConnection.setRequestProperty("Content-Type", "application/json");
-            httpConnection.connect();
+            // make GET request to the given URL
+            HttpResponse httpResponse = httpclient.execute(get);
 
-            bufferedReader = new BufferedReader(new InputStreamReader(httpConnection.getInputStream()));
+            InputStream stream = httpResponse.getEntity().getContent();
 
-            String line;
-            while ((line = bufferedReader.readLine()) != null){
-                response.append(line);
+
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+
+            StringBuffer buffer = new StringBuffer("");
+            String line = "";
+            String newline = System.getProperty("line.separator");
+            while((line = reader.readLine()) != null)
+            {
+                buffer.append(line + newline);
+
             }
+            reader.close();
+           String data = buffer.toString();
 
-            Log.d("log1", "GET response code: " + String.valueOf(httpConnection.getResponseCode()));
-            Log.d("lo2", "JSON response: " + response.toString());
+           Log.d("RESPUESTA:::::::!",data);
 
-            return response.toString();
+            return data;
 
         } catch (Exception e) {
             Log.e("log3", "GET error: " + Log.getStackTraceString(e));
             return null;
 
         }finally {
-            if(httpConnection != null){
-                httpConnection.disconnect();
-            }
+
         }
+
     }
+    // convert inputstream to String
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException{
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null)
+            result += line;
+
+        inputStream.close();
+        return result;
+
+    }//fin clase convert
 
 }
