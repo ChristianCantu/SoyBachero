@@ -29,6 +29,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONObject;
 
+import baches.jperez.soy.utils.SoyBacheroUtils;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -65,6 +67,8 @@ public class MainActivity extends ActionBarActivity {
 
         });
 
+        new GETBaches().execute();
+
 
     }
 
@@ -79,11 +83,11 @@ public class MainActivity extends ActionBarActivity {
             } else if (result == 400) {
 
 
-                Toast.makeText(getBaseContext(), "Usuario y/o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "Usuario y/o contraseï¿½a incorrectos", Toast.LENGTH_SHORT).show();
             }
             else if  (!verificaConexion(MainActivity.this)) {
                 Toast.makeText(getBaseContext(),
-                        "Comprueba tu conexión a Internet ", Toast.LENGTH_SHORT)
+                        "Comprueba tu conexiï¿½n a Internet ", Toast.LENGTH_SHORT)
                         .show();
             }
 
@@ -169,11 +173,11 @@ public class MainActivity extends ActionBarActivity {
         boolean bConectado = false;
         ConnectivityManager connec = (ConnectivityManager) ctx
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
-        // No sólo wifi, también GPRS
+        // No sï¿½lo wifi, tambiï¿½n GPRS
         NetworkInfo[] redes = connec.getAllNetworkInfo();
-        // este bucle debería no ser tan ñapa
+        // este bucle deberï¿½a no ser tan ï¿½apa
         for (int i = 0; i < 2; i++) {
-            // ¿Tenemos conexión? ponemos a true
+            // ï¿½Tenemos conexiï¿½n? ponemos a true
             if (redes[i].getState() == NetworkInfo.State.CONNECTED) {
                 bConectado = true;
             }
@@ -202,5 +206,31 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class GETBaches extends AsyncTask<Object, Void, Void>{
+
+        private ProgressDialog progressDialog;
+
+        @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setMessage(getResources().getString(R.string.abc_action_bar_up_description));
+            progressDialog.show();
+        }
+
+        @Override
+        protected Void doInBackground(Object... arg0) {
+            SoyBacheroUtils.getTimelineForSearchTerm();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result){
+            progressDialog.dismiss();
+        }
+
+
     }
 }
