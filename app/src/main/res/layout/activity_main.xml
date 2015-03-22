@@ -34,7 +34,7 @@
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="#SOYBACHES "
+        android:text="#SOYBACHERO"
         android:textColor="#FFF"
         android:gravity="center"
         android:id="@+id/textView"
@@ -45,7 +45,7 @@
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText"
         android:autoText="false"
-        android:textSize="30dp"
+        android:textSize="25dp"
         android:textIsSelectable="false" />
 
 </RelativeLayout>
