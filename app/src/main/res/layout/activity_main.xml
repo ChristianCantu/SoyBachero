@@ -13,7 +13,7 @@
         android:inputType="textPersonName"
         android:hint="Usuario"
         android:ems="10"
-        android:id="@+id/editText"
+        android:id="@+id/txtusr"
         android:layout_centerVertical="true"
         android:background="#FFF"
         android:layout_centerHorizontal="true" />
@@ -24,8 +24,8 @@
         android:inputType="textPassword"
         android:ems="10"
         android:hint="Contraseña"
-        android:id="@+id/editText2"
-        android:layout_below="@+id/editText"
+        android:id="@+id/txtpwd"
+        android:layout_below="@+id/txtusr"
         android:background="#FFF"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp" />
@@ -40,12 +40,23 @@
         android:id="@+id/textView"
         android:layout_marginTop="54dp"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
+        android:layout_alignRight="@+id/txtusr"
+        android:layout_alignEnd="@+id/txtusr"
+        android:layout_alignLeft="@+id/txtusr"
+        android:layout_alignStart="@+id/txtusr"
         android:autoText="false"
         android:textSize="25dp"
         android:textIsSelectable="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Iniciar Sesion"
+        android:id="@+id/btnIniciar"
+        android:layout_below="@+id/txtpwd"
+        android:layout_alignRight="@+id/txtpwd"
+        android:layout_alignEnd="@+id/txtpwd"
+        android:layout_alignLeft="@+id/txtpwd"
+        android:layout_alignStart="@+id/txtpwd" />
 
 </RelativeLayout>
