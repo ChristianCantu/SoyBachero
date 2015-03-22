@@ -38,7 +38,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#3498DB")));
+        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#000")));
         Button boton = (Button) findViewById(R.id.btnIniciar);
 
         final EditText User = (EditText) findViewById(R.id.txtusr);
